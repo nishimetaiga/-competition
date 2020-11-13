@@ -22,7 +22,7 @@ public class GaugeProcessing : MonoBehaviour
         currentFull = maxFull;
         currentHP = maxHP;
         CountDown = CountNumber;
-        Debug.Log("Start currentFull : " + currentFull);
+      //  Debug.Log("Start currentFull : " + currentFull);
     }
 
     void Update()
@@ -37,7 +37,7 @@ public class GaugeProcessing : MonoBehaviour
                 {
                     //現在の満腹から1づつ引く
                     currentFull = currentFull - 1;
-                    Debug.Log("After currentFull : " + currentFull);
+                  //  Debug.Log("After currentFull : " + currentFull);
                     //最大満腹における現在の満腹をSliderに反映。
                     Full.value = (float)currentFull / (float)maxFull; ;
                 }
@@ -46,7 +46,7 @@ public class GaugeProcessing : MonoBehaviour
                 if (currentFull < 1 && currentHP>0)
                 {
                     currentHP = currentHP - 1;
-                    Debug.Log("After currentFull : " + currentHP);
+                    //Debug.Log("After currentFull : " + currentHP);
                     HP.value = (float)currentHP / (float)maxHP; ;
                 }
                 CountDown = CountNumber;
