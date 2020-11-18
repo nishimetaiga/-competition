@@ -28,6 +28,7 @@ public class PlayerContllole : MonoBehaviour
     void Start()
     {
         rB = GetComponent<Rigidbody>();
+        anim = gameObject.GetComponent<Animator>();
     }
 
     void Update()
