@@ -9,4 +9,12 @@ public class gamestart : MonoBehaviour
     {
         SceneManager.LoadScene("main");
     }
+
+    private void Update()
+    {
+        if (Input.GetKey("joystick button 1"))
+        {
+            SceneManager.LoadScene("main");
+        }
+    }
 }

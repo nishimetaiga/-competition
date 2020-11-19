@@ -65,7 +65,7 @@ public class Bkh : MonoBehaviour
             float distance = Vector3.Distance(Apos, Bpos);      //自分の位置-プレイヤーの位置
             if (distance > 5)
             {
-                Kcount = 3.0f;
+                Kcount = 2.0f;
             }
             else
             {

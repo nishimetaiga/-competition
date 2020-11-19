@@ -16,7 +16,7 @@ public class Level: MonoBehaviour
     Vector3 HebiS;
     void Start()
     {
-        level = 0;
+        level = 1;
         textLevel = GameObject.Find("Level").GetComponent<Text>();
         SetLevelText(level);
     }
