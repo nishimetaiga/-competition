@@ -88,6 +88,7 @@ public class PlayerContllole : MonoBehaviour
         else
         {
             rB.AddForce(0, 0, 0, ForceMode.Impulse);
+            anim.SetFloat("Blend", 0.0f);
             ClearText.enabled = true;
             ClearOn = true;
         }

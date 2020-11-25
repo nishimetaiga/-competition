@@ -21,12 +21,18 @@ public class PlayerHit : MonoBehaviour
     private float CountDown;
     Vector3 EP;
 
+    private AudioSource audio;
+    public GameObject StarPati;
+
+    public AudioClip KSE;
+
     void Start()
     {
         Hp = EnemyUI.transform.Find("EnemyHP").GetComponent<Slider>();
         Hp.value = 1f;
         currentHp = MaxHp;
         CountDown = CountNumber;
+        //audio = gameObject.AddComponent<AudioSource>();
         Debug.Log("Start currentHp : " + currentHp);
     }
 
@@ -46,14 +52,16 @@ public class PlayerHit : MonoBehaviour
         float len = stat.length;
 
         //クリップ(アニメーション)名を取得
-        string clipName =clip[0].clip.name;
+        string clipName = clip[0].clip.name;
         Debug.Log(clipName);
 
         //Debug.Log("length" +stat.length);
-        if (other.gameObject.tag== "Player" && clipName=="アーマチュア|カム")
+        if (other.gameObject.tag == "Player" && clipName == "アーマチュア|カム")
         {
             if (CountDown < 0)
             {
+                //audio.PlayOneShot(KSE);
+                ParticalLevel();
                 currentHp = currentHp - 1;
                 //最大満腹における現在の満腹をSliderに反映。
                 Hp.value = (float)currentHp / (float)MaxHp; ;
@@ -63,7 +71,8 @@ public class PlayerHit : MonoBehaviour
                 {
                     GP.currentFull += MaxHp;
                     LE.Geken += MaxHp;
-                    if (GP.currentFull > GP.maxFull) {
+                    if (GP.currentFull > GP.maxFull)
+                    {
                         GP.currentFull = GP.maxFull;
                     }
                     GP.Full.value = (float)GP.currentFull / (float)GP.maxFull;
@@ -76,6 +85,26 @@ public class PlayerHit : MonoBehaviour
                 gameObject.GetComponent<Transform>().position = new Vector3(EP.x + back, EP.y, EP.z);
                 CountDown = CountNumber;
             }
+        }
+    }
+
+    private void ParticalLevel()
+    {
+        switch (LE.level)
+        {
+            case 1:
+                Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                break;
+            case 2:
+                Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                break;
+            case 3:
+                Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                break;
+
         }
     }
 }

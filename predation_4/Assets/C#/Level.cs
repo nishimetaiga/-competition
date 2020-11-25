@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Level: MonoBehaviour
 {
-    private int level;
+    public int level;
     private Text textLevel;
     public GameObject Snake;
     public float Size;
