@@ -96,16 +96,28 @@ public class EnemyHit : MonoBehaviour
         switch (LE.level)
         {
             case 1:
-                Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                for (int i = 0; i < LE.level * 3; i++) 
+                {
+                    Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                }
+                //Instantiate(StarPati, this.transform.position, Quaternion.identity);
                 break;
             case 2:
-                Instantiate(StarPati, this.transform.position, Quaternion.identity);
-                Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                for (int i = 0; i < LE.level * 3; i++)
+                {
+                    Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                }
+               // Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                //Instantiate(StarPati, this.transform.position, Quaternion.identity);
                 break;
             case 3:
-                Instantiate(StarPati, this.transform.position, Quaternion.identity);
-                Instantiate(StarPati, this.transform.position, Quaternion.identity);
-                Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                for (int i = 0; i < LE.level * 3; i++)
+                {
+                    Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                }
+                // Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                //Instantiate(StarPati, this.transform.position, Quaternion.identity);
+                //Instantiate(StarPati, this.transform.position, Quaternion.identity);
                 break;
 
         }

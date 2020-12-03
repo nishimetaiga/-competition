@@ -15,10 +15,15 @@ public class GaugeProcessing : MonoBehaviour
     public Slider HP;
     public float CountNumber = 0.0f;
     private float CountDown;
+
+    public Image MP;        //満腹ゲージの画像
+    public Image HP1;       //HPゲージの画像
     void Start()
     {
         Full.value = 1;
         HP.value = 1;
+        MP.fillAmount = 1;
+        HP1.fillAmount = 1;
         currentFull = maxFull;
         currentHP = maxHP;
         CountDown = CountNumber;
@@ -39,7 +44,8 @@ public class GaugeProcessing : MonoBehaviour
                     currentFull = currentFull - 1;
                   //  Debug.Log("After currentFull : " + currentFull);
                     //最大満腹における現在の満腹をSliderに反映。
-                    Full.value = (float)currentFull / (float)maxFull; ;
+                    //Full.value = (float)currentFull / (float)maxFull; ;
+                    MP.fillAmount = (float)currentFull / (float)maxFull;
                 }
 
                 //HPゲージの処理
@@ -47,7 +53,8 @@ public class GaugeProcessing : MonoBehaviour
                 {
                     currentHP = currentHP - 1;
                     //Debug.Log("After currentFull : " + currentHP);
-                    HP.value = (float)currentHP / (float)maxHP; ;
+                    //HP.value = (float)currentHP / (float)maxHP; ;
+                    HP1.fillAmount = (float)currentHP / (float)maxHP;
                 }
                 CountDown = CountNumber;
             }

@@ -19,6 +19,12 @@ public class Level : MonoBehaviour
     public int Geken = 0;
     //オブジェクトのサイズ
     Vector3 HebiS;
+
+    //levelupの画像の処理の変数一覧
+    public Image LevelUp;
+    float lu;
+    float lus;
+    bool luf;
     void Start()
     {
         level = 1;
@@ -27,6 +33,10 @@ public class Level : MonoBehaviour
         HebiS = Snake.GetComponent<Transform>().localScale;
         MaxSize = HebiS.x;
         SetLevelText(level);
+        lu = 0.0f;
+        lus = 0.0f;
+        LevelUp.fillAmount = 0;
+        luf = false;
     }
     private void SetLevelText(int level)
     {
@@ -39,19 +49,45 @@ public class Level : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        LevelUpimg();
+
         if (Mxaken <= Geken)
         {
-            level++;
-            PC.Attack++;
-            Geken = 0;
-            Debug.Log("level");
-            SetLevelText(level);
-            //サイズをヘビのサイズに×
-            MaxSize = MaxSize * Size;
-            //必要な経験値を上げる
-            Mxaken += Mxaken;
-            Debug.Log(Geken);
+            if (luf == true)
+            {
+                level++;
+                PC.Attack++;
+                Geken = 0;
+                //Debug.Log("level");
+                SetLevelText(level);
+                //サイズをヘビのサイズに×
+                MaxSize = MaxSize * Size;
+                //必要な経験値を上げる
+                Mxaken += Mxaken;
+                luf = false;
+                //Debug.Log(Geken);
+            }
         }
+    }
+
+    //levelupの画像の処理
+    private void LevelUpimg()
+    {
+        lu = (float)Geken / (float)Mxaken;
+        if (lu > lus)
+        {
+            lus += 0.05f;
+            LevelUp.fillAmount += 0.05f;
+        }
+
+        if (lus >= 1)
+        {
+            lus = 0.0f;
+            LevelUp.fillAmount = 0;
+            luf = true;
+        }
+        //LevelUp.fillAmount = (float)LE.Geken / (float)LE.Mxaken;
     }
 }
 
