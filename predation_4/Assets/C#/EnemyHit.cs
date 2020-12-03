@@ -24,7 +24,7 @@ public class EnemyHit : MonoBehaviour
     //空のオブジェクト
     Vector3 EP;
 
-    //private AudioSource audio;
+    private AudioSource audio;
     public GameObject StarPati;
 
     public AudioClip KSE;
@@ -35,7 +35,7 @@ public class EnemyHit : MonoBehaviour
         Hp.value = 1f;
         currentHp = MaxHp;
         CountDown = CountNumber;
-        //audio = gameObject.AddComponent<AudioSource>();
+        audio = gameObject.AddComponent<AudioSource>();
         Debug.Log("Start currentHp : " + currentHp);
     }
 
@@ -63,7 +63,7 @@ public class EnemyHit : MonoBehaviour
         {
             if (CountDown < 0)
             {
-                //audio.PlayOneShot(KSE);
+                audio.PlayOneShot(KSE);
                 ParticalLevel();
                 currentHp = currentHp - PC.Attack;
                 //最大満腹における現在の満腹をSliderに反映。
