@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHit : MonoBehaviour
+public class EnemyHit : MonoBehaviour
 {
     [SerializeField] private PlayerContllole PC;
     [SerializeField] private GaugeProcessing GP;
@@ -16,12 +16,15 @@ public class PlayerHit : MonoBehaviour
     public int back;
     [SerializeField]
     private GameObject EnemyUI;
+    //HPバー
     private Slider Hp;
+    //カウント
     public float CountNumber = 0.0f;
     private float CountDown;
+    //空のオブジェクト
     Vector3 EP;
 
-    private AudioSource audio;
+    //private AudioSource audio;
     public GameObject StarPati;
 
     public AudioClip KSE;
@@ -62,12 +65,12 @@ public class PlayerHit : MonoBehaviour
             {
                 //audio.PlayOneShot(KSE);
                 ParticalLevel();
-                currentHp = currentHp - 1;
+                currentHp = currentHp - PC.Attack;
                 //最大満腹における現在の満腹をSliderに反映。
                 Hp.value = (float)currentHp / (float)MaxHp; ;
                 Debug.Log("Start currentHp : " + currentHp);
                 //エネミー(敵)のHPがゼロの場合の処理
-                if (currentHp == 0)
+                if (currentHp <= 0)
                 {
                     GP.currentFull += MaxHp;
                     LE.Geken += MaxHp;

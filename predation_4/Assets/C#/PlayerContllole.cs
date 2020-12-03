@@ -18,6 +18,9 @@ public class PlayerContllole : MonoBehaviour
     Vector3 moveDirection;
     public float moveTurnSpeed = 10f;
 
+    //プレイヤーの攻撃力
+    public int Attack = 1;
+
     private float x, z;
 
     private void Ani()
