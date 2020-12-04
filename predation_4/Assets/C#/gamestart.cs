@@ -5,16 +5,64 @@ using UnityEngine.SceneManagement;
 
 public class gamestart : MonoBehaviour
 {
-    public void StartGame()
+    public GameObject Cgm;
+    public GameObject Cgms;
+    private bool BS;
+
+    private void Start()
     {
-        SceneManager.LoadScene("main");
+        Cgm.SetActive(true);
+        Cgms.SetActive(false);
     }
+
+    //public void StartGame()
+    //{
+    //    SceneManager.LoadScene("main");
+    //}
 
     private void Update()
     {
-        if (Input.GetKey("joystick button 1"))
+        if (BS != true)
         {
-            SceneManager.LoadScene("main");
+            if (Input.GetKeyDown("joystick button 1"))
+            {
+                SceneManager.LoadScene("main");
+            }
+        }
+        BottonC();
+        if (BS == true)
+        {
+            Cgm.SetActive(false);
+            Cgms.SetActive(true);
+        }
+        else
+        {
+            if (BS == false)
+            {
+                Cgm.SetActive(true);
+                Cgms.SetActive(false);
+            }
+        }
+    }
+
+    private void BottonC()
+    {
+        if (BS == false)
+        {
+            if (Input.GetKeyDown("joystick button 0"))
+            {
+                BS = true;
+            }
+        }
+        else
+        {
+            if (BS == true)
+            {
+                if (Input.GetKeyDown("joystick button 0"))
+                {
+                    BS = false;
+                }
+            }
         }
     }
 }
