@@ -8202,7 +8202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   anim: {fileID: 1757911801}
-  Gmo: {fileID: 1219509310}
+  Gmo: {fileID: 362905067}
   ClearText: {fileID: 577860424}
   ClearOn: 0
   moveTurnSpeed: 10
