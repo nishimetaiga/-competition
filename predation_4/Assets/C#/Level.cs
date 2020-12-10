@@ -56,7 +56,7 @@ public class Level : MonoBehaviour
 
         if (Mxaken <= CurrentKen)
         {
-            if (luf == true)
+            if (luf == true && PC.GameOverFlag == false) 
             {
                 Time.timeScale = 0;  // 時間停止
                 level++;

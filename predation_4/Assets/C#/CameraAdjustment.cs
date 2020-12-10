@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraAdjustment: MonoBehaviour
 {
     [SerializeField] Level LE;
+    [SerializeField] PlayerContllole pl;
     private GameObject player;  //プレイヤー情報格納用
     private Vector3 offset;      //相対距離取得用
     //レベルカウント
@@ -38,35 +39,37 @@ public class CameraAdjustment: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        //新しいトランスフォームの値を代入する
-        transform.position = player.transform.position + offset;
-
-        //レベルカウントより現在のレベルが大きい場合
-        if (count < LE.level)
+        if (pl.GameOverFlag == false)
         {
-            //現在の大きさがMAX大きさより大きい時
-            if (player.transform.localScale.x > LE.CurrentSize)
+            //新しいトランスフォームの値を代入する
+            transform.position = player.transform.position + offset;
+
+            //レベルカウントより現在のレベルが大きい場合
+            if (count < LE.level)
             {
-                //カメラのZ座標の調整
-                if (transform.localPosition.z < MaxCameraZ)
+                //現在の大きさがMAX大きさより大きい時
+                if (player.transform.localScale.x > LE.CurrentSize)
                 {
-                    count++;
-                    //カメラアップ距離
-                    Speed+=0.5f;
-                    MaxCameraY = MaxCameraY * CameraPosition+Speed;
-                    MaxCameraZ = MaxCameraZ * CameraPosition;
-                    Time.timeScale = 1;  // 時間再開
-                }
-                //カメラのY座標の調整
-                else if (transform.localPosition.y < MaxCameraY)
-                {
-                    offset.z -= shrinkSpeed;
-                    offset.y += shrinkSpeed;
-                }
-                else
-                {
-                    offset.z -= shrinkSpeed;
+                    //カメラのZ座標の調整
+                    if (transform.localPosition.z < MaxCameraZ)
+                    {
+                        count++;
+                        //カメラアップ距離
+                        Speed += 0.5f;
+                        MaxCameraY = MaxCameraY * CameraPosition + Speed;
+                        MaxCameraZ = MaxCameraZ * CameraPosition;
+                        Time.timeScale = 1;  // 時間再開
+                    }
+                    //カメラのY座標の調整
+                    else if (transform.localPosition.y < MaxCameraY)
+                    {
+                        offset.z -= shrinkSpeed;
+                        offset.y += shrinkSpeed;
+                    }
+                    else
+                    {
+                        offset.z -= shrinkSpeed;
+                    }
                 }
             }
         }

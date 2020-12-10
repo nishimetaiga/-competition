@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GaugeProcessing : MonoBehaviour
 {
+    [SerializeField] public PlayerContllole Player;
     //満腹ゲージのMAXと現在
     public int maxFull = 100;
     public int currentFull;
@@ -37,26 +38,29 @@ public class GaugeProcessing : MonoBehaviour
         {
             if (CountDown < 0)
             {
-                //満腹ゲージの処理
-                if (currentFull > 0)
+                if (Player.ClearOn == false && Player.GameOverFlag == false)
                 {
-                    //現在の満腹から1づつ引く
-                    currentFull = currentFull - 1;
-                  //  Debug.Log("After currentFull : " + currentFull);
-                    //最大満腹における現在の満腹をSliderに反映。
-                    //Full.value = (float)currentFull / (float)maxFull; ;
-                    MP.fillAmount = (float)currentFull / (float)maxFull;
-                }
+                    //満腹ゲージの処理
+                    if (currentFull > 0)
+                    {
+                        //現在の満腹から1づつ引く
+                        currentFull = currentFull - 1;
+                        //  Debug.Log("After currentFull : " + currentFull);
+                        //最大満腹における現在の満腹をSliderに反映。
+                        //Full.value = (float)currentFull / (float)maxFull; ;
+                        MP.fillAmount = (float)currentFull / (float)maxFull;
+                    }
 
-                //HPゲージの処理
-                if (currentFull < 1 && currentHP>0)
-                {
-                    currentHP = currentHP - 1;
-                    //Debug.Log("After currentFull : " + currentHP);
-                    //HP.value = (float)currentHP / (float)maxHP; ;
-                    HP1.fillAmount = (float)currentHP / (float)maxHP;
+                    //HPゲージの処理
+                    if (currentFull < 1 && currentHP > 0)
+                    {
+                        currentHP = currentHP - 1;
+                        //Debug.Log("After currentFull : " + currentHP);
+                        //HP.value = (float)currentHP / (float)maxHP; ;
+                        HP1.fillAmount = (float)currentHP / (float)maxHP;
+                    }
+                    CountDown = CountNumber;
                 }
-                CountDown = CountNumber;
             }
         }
     }

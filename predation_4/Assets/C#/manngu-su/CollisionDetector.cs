@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class CollisionDetector : MonoBehaviour
 {
     [SerializeField] private TriggerEvent onTriggerStay = new TriggerEvent();
+    [SerializeField] public PlayerContllole PC;
     /// <summary>
     /// Is TriggerがONで他のColliderと重なっている時は、このメソッドがコールされる
     /// </summary>
@@ -13,7 +14,10 @@ public class CollisionDetector : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerStay(Collider other)
     {
-        onTriggerStay.Invoke(other);
+        if (PC.GameOverFlag == false)
+        {
+            onTriggerStay.Invoke(other);
+        }
     }
 
     [Serializable]
