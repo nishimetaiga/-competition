@@ -46,7 +46,7 @@ public class CameraAdjustment: MonoBehaviour
         if (count < LE.level)
         {
             //現在の大きさがMAX大きさより大きい時
-            if (player.transform.localScale.x > LE.MaxSize)
+            if (player.transform.localScale.x > LE.CurrentSize)
             {
                 //カメラのZ座標の調整
                 if (transform.localPosition.z < MaxCameraZ)
@@ -56,6 +56,7 @@ public class CameraAdjustment: MonoBehaviour
                     Speed+=0.5f;
                     MaxCameraY = MaxCameraY * CameraPosition+Speed;
                     MaxCameraZ = MaxCameraZ * CameraPosition;
+                    Time.timeScale = 1;  // 時間再開
                 }
                 //カメラのY座標の調整
                 else if (transform.localPosition.y < MaxCameraY)

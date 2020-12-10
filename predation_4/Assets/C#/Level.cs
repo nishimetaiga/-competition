@@ -12,11 +12,13 @@ public class Level : MonoBehaviour
     //1レベル上がるごとのサイズ倍率
     public float Size;
     //現在のサイズ
-    public float MaxSize;
+    public float CurrentSize;
     //必要な経験値
     public int Mxaken;
     //現在の経験値
-    public int Geken = 0;
+    public int CurrentKen = 0;
+    //必要な経験値に不要な経験値
+    private int Aken = 0;
     //オブジェクトのサイズ
     Vector3 HebiS;
 
@@ -31,7 +33,7 @@ public class Level : MonoBehaviour
         textLevel = GameObject.Find("Level").GetComponent<Text>();
         //オブジェクト(ヘビ)のサイズを取得
         HebiS = Snake.GetComponent<Transform>().localScale;
-        MaxSize = HebiS.x;
+        CurrentSize = HebiS.x;
         SetLevelText(level);
         lu = 0.0f;
         lus = 0.0f;
@@ -52,17 +54,22 @@ public class Level : MonoBehaviour
 
         LevelUpimg();
 
-        if (Mxaken <= Geken)
+        if (Mxaken <= CurrentKen)
         {
             if (luf == true)
             {
+                Time.timeScale = 0;  // 時間停止
                 level++;
                 PC.Attack++;
-                Geken = 0;
-                //Debug.Log("level");
+                PC.speed += PC.speed;
+                if (CurrentKen > 0)
+                {
+                    Aken = CurrentKen - Mxaken;
+                    CurrentKen = Aken;
+                }
                 SetLevelText(level);
                 //サイズをヘビのサイズに×
-                MaxSize = MaxSize * Size;
+                CurrentSize = CurrentSize * Size;
                 //必要な経験値を上げる
                 Mxaken += Mxaken;
                 luf = false;
@@ -74,7 +81,7 @@ public class Level : MonoBehaviour
     //levelupの画像の処理
     private void LevelUpimg()
     {
-        lu = (float)Geken / (float)Mxaken;
+        lu = (float)CurrentKen / (float)Mxaken;
         if (lu > lus)
         {
             lus += 0.05f;

@@ -11,7 +11,7 @@ public class EnemyHit : MonoBehaviour
     //敵のMAX体力と現在(仮)
     [SerializeField]
     public int MaxHp = 3;
-    int currentHp;
+    public int currentHp;
     //噛まれたときのノックバック
     public int back;
     [SerializeField]
@@ -73,7 +73,7 @@ public class EnemyHit : MonoBehaviour
                 if (currentHp <= 0)
                 {
                     GP.currentFull += MaxHp;
-                    LE.Geken += MaxHp;
+                    LE.CurrentKen += MaxHp;
                     if (GP.currentFull > GP.maxFull)
                     {
                         GP.currentFull = GP.maxFull;

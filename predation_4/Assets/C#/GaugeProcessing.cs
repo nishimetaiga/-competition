@@ -10,7 +10,7 @@ public class GaugeProcessing : MonoBehaviour
     public int currentFull;
     //HPゲージのMAXと現在
     int maxHP = 100;
-    int currentHP;
+    public int currentHP;
     public Slider Full;
     public Slider HP;
     public float CountNumber = 0.0f;

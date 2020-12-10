@@ -46,47 +46,51 @@ public class PlayerContllole : MonoBehaviour
 
         if (Gmo != null)
         {
-            if (Input.GetKey("joystick button 3"))
+            //一時停止していない間ボタン入力を有効化する
+            if (Time.timeScale != 0)
             {
-                anim.SetBool("kami Trigger", true);
-                Debug.Log("button3");
+                if (Input.GetKey("joystick button 3"))
+                {
+                    anim.SetBool("kami Trigger", true);
+                    Debug.Log("button3");
 
+                }
+
+                if (lsv != 0)
+                {
+                    z = Input.GetAxis("Vertical");
+                    Ani();
+                }
+
+                if (lsh != 0)
+                {
+                    x = Input.GetAxis("Horizontal");
+                    Ani();
+                    //再開
+
+                }
+                else if (lsh == 0)
+                {
+                    anim.SetBool("hebi Trigger", false);
+                    //一時停止
+                    anim.SetFloat("Blend", 0.0f);
+
+                    //Debug.Log("animT");
+                }
+
+                if (Input.GetKeyDown("joystick button 0"))
+                {
+                    anim.SetBool("hebi Trigger", true);
+                    //Debug.Log("ButtonA");
+                }
+                else
+                {
+
+                }
+
+                // Look=Quaternion.LookRotation()
+                rB.AddForce(x * speed, 0, z * speed, ForceMode.Impulse);
             }
-
-            if (lsv != 0)
-            {
-                z = Input.GetAxis("Vertical");
-                Ani();
-            }
-
-            if (lsh != 0)
-            {
-                x = Input.GetAxis("Horizontal");
-                Ani();
-                //再開
-
-            }
-            else if (lsh == 0)
-            {
-                anim.SetBool("hebi Trigger", false);
-                //一時停止
-                anim.SetFloat("Blend", 0.0f);
-
-                //Debug.Log("animT");
-            }
-
-            if (Input.GetKeyDown("joystick button 0"))
-            {
-                anim.SetBool("hebi Trigger", true);
-                //Debug.Log("ButtonA");
-            }
-            else
-            {
-
-            }
-
-            // Look=Quaternion.LookRotation()
-            rB.AddForce(x * speed, 0, z * speed, ForceMode.Impulse);
         }
         else
         {

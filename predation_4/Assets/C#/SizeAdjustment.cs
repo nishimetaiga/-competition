@@ -11,7 +11,7 @@ public class SizeAdjustment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.localScale.x < LE.MaxSize)
+        if (transform.localScale.x < LE.CurrentSize)
         {
             transform.localScale += new Vector3(shrinkSpeed, shrinkSpeed, shrinkSpeed);
         }
