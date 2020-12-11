@@ -39,6 +39,7 @@ public class Level : MonoBehaviour
         lus = 0.0f;
         LevelUp.fillAmount = 0;
         luf = false;
+        Time.timeScale = 1;
     }
     private void SetLevelText(int level)
     {
